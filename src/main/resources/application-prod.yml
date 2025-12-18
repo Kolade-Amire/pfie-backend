@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    root: info
+    com.kay.pfie: info
+
+pfie:
+  storage:
+    s3:
+      bucket: ${S3_BUCKET}
+      region: ${AWS_REGION}
+      endpoint: ${S3_ENDPOINT:}
+      accessKey: ${AWS_ACCESS_KEY_ID}
+      secretKey: ${AWS_SECRET_ACCESS_KEY}
+      pathStyleAccess: ${S3_PATH_STYLE_ACCESS:false}

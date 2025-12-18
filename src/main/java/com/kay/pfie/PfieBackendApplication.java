@@ -2,7 +2,7 @@ package com.kay.pfie;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.boot.actuate.amqp.*;
 @SpringBootApplication
 public class PfieBackendApplication {
 
