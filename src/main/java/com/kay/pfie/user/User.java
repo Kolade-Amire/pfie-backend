@@ -1,6 +1,7 @@
 package com.kay.pfie.user;
 
 import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 )
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
@@ -38,18 +39,59 @@ public class User {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt = Instant.now();
 
-    public UUID getId() { return id; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getDisplayName() { return displayName; }
-    public void setDisplayName(String displayName) { this.displayName = displayName; }
-    public String getAvatarUrl() { return avatarUrl; }
-    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
-    public String getAuthProvider() { return authProvider; }
-    public void setAuthProvider(String authProvider) { this.authProvider = authProvider; }
-    public String getProviderSubject() { return providerSubject; }
-    public void setProviderSubject(String providerSubject) { this.providerSubject = providerSubject; }
-    public Instant getCreatedAt() { return createdAt; }
-    public Instant getUpdatedAt() { return updatedAt; }
-    public void touchUpdatedAt() { this.updatedAt = Instant.now(); }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getAuthProvider() {
+        return authProvider;
+    }
+
+    public void setAuthProvider(String authProvider) {
+        this.authProvider = authProvider;
+    }
+
+    public String getProviderSubject() {
+        return providerSubject;
+    }
+
+    public void setProviderSubject(String providerSubject) {
+        this.providerSubject = providerSubject;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void touchUpdatedAt() {
+        this.updatedAt = Instant.now();
+    }
 }

@@ -11,6 +11,15 @@ logging:
     com.kay.pfie: info
 
 pfie:
+  auth:
+    jwt:
+      issuer: ${JWT_ISSUER:pfie}
+      secret: ${JWT_SECRET}
+    google:
+      client-id: ${GOOGLE_CLIENT_ID}
+  user-defaults:
+    currency: ${USER_DEFAULT_CURRENCY:NGN}
+    time-zone: ${USER_DEFAULT_TIME_ZONE:UTC}
   storage:
     s3:
       bucket: ${S3_BUCKET}
