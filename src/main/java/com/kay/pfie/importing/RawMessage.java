@@ -1,6 +1,7 @@
 package com.kay.pfie.importing;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.kay.pfie.common.enums.SourceType;
 import com.kay.pfie.user.User;
 import jakarta.persistence.*;
@@ -52,6 +53,10 @@ public class RawMessage {
         Instant now = Instant.now();
         if (receivedAt == null) receivedAt = now;
         if (createdAt == null) createdAt = now;
+
+        if (this.metadata == null) {
+            this.metadata = JsonNodeFactory.instance.objectNode(); // {}
+        }
     }
 
     public UUID getId() {
