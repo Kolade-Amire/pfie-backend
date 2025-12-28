@@ -2,6 +2,9 @@ server:
   port: ${PORT:8080}
 
 spring:
+  mvc:
+    servlet:
+      path: /api
   application:
     name: pfie-backend
   profiles:
