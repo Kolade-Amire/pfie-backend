@@ -4,9 +4,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.kay.pfie.common.web.ApiPaths;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping(ApiPaths.V1)
 public class MeController {
 
     public record MeResponse(java.util.UUID id, String email) {}

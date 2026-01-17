@@ -3,9 +3,10 @@ package com.kay.pfie.auth;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import com.kay.pfie.common.web.ApiPaths;
 
 @RestController
-@RequestMapping("/v1/auth")
+@RequestMapping(ApiPaths.V1 + "/auth")
 @Validated
 public class AuthController {
     private final AuthService authService;

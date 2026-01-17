@@ -1,7 +1,7 @@
 package com.kay.pfie.auth;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-import com.kay.pfie.config.PfieProperties;
+import com.kay.pfie.config.PfieUserDefaultsProperties;
 import com.kay.pfie.user.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -12,20 +12,20 @@ public class AuthService {
     private final JwtService jwtService;
     private final UserRepository userRepo;
     private final UserProfileRepository profileRepo;
-    private final PfieProperties props;
+    private final PfieUserDefaultsProperties userDefaults;
 
     public AuthService(
             GoogleIdTokenService googleIdTokenService,
             JwtService jwtService,
             UserRepository userRepo,
             UserProfileRepository profileRepo,
-            PfieProperties props
+            PfieUserDefaultsProperties userDefaults
     ) {
         this.googleIdTokenService = googleIdTokenService;
         this.jwtService = jwtService;
         this.userRepo = userRepo;
         this.profileRepo = profileRepo;
-        this.props = props;
+        this.userDefaults = userDefaults;
     }
 
     @Transactional
@@ -54,8 +54,8 @@ public class AuthService {
         profileRepo.findById(savedUser.getId()).orElseGet(() -> {
             var prof = new UserProfile();
             prof.setUser(savedUser);
-            prof.setTimeZone(props.userDefaults().timeZone());
-            prof.setDefaultCurrency(props.userDefaults().currency());
+            prof.setTimeZone(userDefaults.getTimeZone());
+            prof.setDefaultCurrency(userDefaults.getCurrency());
             return profileRepo.save(prof);
         });
 

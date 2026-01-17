@@ -4,6 +4,8 @@ spring:
     username: ${PGUSER}
     password: ${PGPASSWORD}
     driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
 
 logging:
   level:
@@ -13,13 +15,13 @@ logging:
 pfie:
   auth:
     jwt:
-      issuer: ${JWT_ISSUER:pfie}
+      issuer: ${JWT_ISSUER}
       secret: ${JWT_SECRET}
     google:
       client-id: ${GOOGLE_CLIENT_ID}
   user-defaults:
-    currency: ${USER_DEFAULT_CURRENCY:NGN}
-    time-zone: ${USER_DEFAULT_TIME_ZONE:UTC}
+    currency: ${USER_DEFAULT_CURRENCY}
+    time-zone: ${USER_DEFAULT_TIME_ZONE}
   storage:
     s3:
       bucket: ${S3_BUCKET}

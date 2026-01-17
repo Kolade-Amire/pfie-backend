@@ -1,12 +1,18 @@
 # PFIE Backend
 
+## Prerequisites
+
+- Java 21
+- Docker (for Postgres/MinIO)
+
 ## Local setup (quick)
 
 - Copy `.env.example` to `.env` and set any required values.
+  - `.env.example` is the source of truth for required env vars.
 - Start dependencies:
 
 ```sh
-docker compose up
+docker compose up -d
 ```
 
 ## Run migrations explicitly
@@ -20,5 +26,19 @@ Flyway is disabled in app config; run migrations with the migrate entrypoint:
 ## Run the app
 
 ```sh
-./mvnw spring-boot:run
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
+
+## Run tests
+
+```sh
+./mvnw test
+```
+
+## API base
+
+All app endpoints are under `/api/v1`. Health endpoints are handled by Actuator.
+
+## Docs
+
+See `docs/runbook.md` for deployment notes and migration flow.

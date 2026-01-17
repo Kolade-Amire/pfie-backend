@@ -1,6 +1,7 @@
 package com.kay.pfie.auth;
 
-import com.kay.pfie.config.PfieProperties;
+import com.kay.pfie.config.PfieGoogleAuthProperties;
+import com.kay.pfie.config.PfieJwtProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,16 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class AuthWiring {
 
     @Bean
-    public GoogleIdTokenService googleIdTokenService(PfieProperties props) {
-        String clientId = props.auth().google().clientId();
-        if (clientId == null || clientId.isBlank()) {
-            throw new IllegalStateException("GOOGLE_CLIENT_ID is required");
-        }
-        return new GoogleIdTokenService(clientId);
+    public GoogleIdTokenService googleIdTokenService(PfieGoogleAuthProperties props) {
+        return new GoogleIdTokenService(props.getClientId());
     }
 
     @Bean
-    public JwtService jwtService(PfieProperties props) {
-        return new JwtService(props.auth().jwt().issuer(), props.auth().jwt().secret());
+    public JwtService jwtService(PfieJwtProperties props) {
+        return new JwtService(props.getIssuer(), props.getSecret());
     }
 }

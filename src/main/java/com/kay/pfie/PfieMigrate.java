@@ -23,6 +23,7 @@ public final class PfieMigrate {
         int exitCode = 0;
         try {
             DataSource dataSource = ctx.getBean(DataSource.class);
+            logTargetDatabase(dataSource);
             Flyway flyway =
                     Flyway.configure()
                             .dataSource(dataSource)
@@ -36,6 +37,15 @@ public final class PfieMigrate {
             final int finalExitCode = exitCode;
             int code = SpringApplication.exit(ctx, () -> finalExitCode);
             System.exit(code);
+        }
+    }
+
+    private static void logTargetDatabase(DataSource dataSource) {
+        try (var connection = dataSource.getConnection()) {
+            var meta = connection.getMetaData();
+            log.info("Running migrations on {}", meta.getURL());
+        } catch (Exception e) {
+            log.warn("Unable to determine target database URL");
         }
     }
 }

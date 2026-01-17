@@ -1,6 +1,5 @@
 package com.kay.pfie.auth;
 
-import com.kay.pfie.PfieMigrate;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
