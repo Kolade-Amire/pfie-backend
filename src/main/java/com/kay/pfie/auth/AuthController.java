@@ -1,9 +1,11 @@
 package com.kay.pfie.auth;
 
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.kay.pfie.common.web.ApiPaths;
+import com.kay.pfie.auth.AuthDtos.AuthResponse;
+import com.kay.pfie.auth.AuthDtos.GoogleAuthRequest;
+import com.kay.pfie.auth.AuthDtos.UserDto;
 
 @RestController
 @RequestMapping(ApiPaths.V1 + "/auth")
@@ -14,10 +16,6 @@ public class AuthController {
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
-
-    public record GoogleAuthRequest(@NotBlank String idToken) {}
-    public record AuthResponse(String accessToken, UserDto user) {}
-    public record UserDto(java.util.UUID id, String email, String displayName, String avatarUrl) {}
 
     @PostMapping("/google")
     public AuthResponse google(@RequestBody GoogleAuthRequest req) {

@@ -25,7 +25,7 @@ public class CorsConfig {
     }
 
     private List<String> resolveOrigins(List<String> origins, Environment environment) {
-        boolean isProd = environment.acceptsProfiles("prod");
+        boolean isProd = environment.matchesProfiles("prod");
         if (origins == null || origins.isEmpty()) {
             if (isProd) {
                 throw new IllegalStateException("pfie.cors.allowed-origins must be set in prod");

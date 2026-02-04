@@ -5,6 +5,7 @@ import com.kay.pfie.config.PfieUserDefaultsProperties;
 import com.kay.pfie.user.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import com.kay.pfie.auth.AuthDtos.AuthResult;
 
 @Service
 public class AuthService {
@@ -63,6 +64,4 @@ public class AuthService {
         return new AuthResult(accessToken, savedUser.getId(), savedUser.getEmail(), savedUser.getDisplayName(), savedUser.getAvatarUrl());
 
     }
-
-    public record AuthResult(String accessToken, java.util.UUID userId, String email, String displayName, String avatarUrl) {}
 }
