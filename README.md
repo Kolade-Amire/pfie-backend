@@ -39,6 +39,11 @@ Flyway is disabled in app config; run migrations with the migrate entrypoint:
 
 All app endpoints are under `/api/v1`. Health endpoints are handled by Actuator.
 
+## Swagger / OpenAPI
+
+Swagger UI is available at `/swagger-ui/index.html`.
+Use the **Authorize** button and paste a JWT (`Bearer <token>`) to call protected endpoints.
+
 ## Docs
 
 See `docs/runbook.md` for deployment notes and migration flow.
